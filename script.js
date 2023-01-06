@@ -6,6 +6,7 @@ function getComputerChoice() {
 
 getComputerChoice(); //call function to test 'choice' console after using console.log
 
+//! Game Rule set
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === "rock" && computerSelection === 'paper') {
         return "You lose! paper beats rock"
@@ -14,9 +15,19 @@ function playRound(playerSelection, computerSelection) {
     } else if (playerSelection === computerSelection) {
         return "Draw"
     }
+}
 
-   
-
+//! Playing 5 rounds
+//Create game function
+function game() {
+    // player and computer count should start at zero 
+    let playerCount = 0;
+    let computerCOunt = 0;
+    for (let i = 0; i < 5; i++) {
+        playRound; //call rules function made previously into for loop
+        // if player wins then 
+            
+    }
 }
 
 const playerSelection = "RoCk".toLowerCase(); //turned lowercase 
