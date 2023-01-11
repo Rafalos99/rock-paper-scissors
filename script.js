@@ -24,10 +24,13 @@ function game() {
     let playerCount = 0;
     let computerCount = 0;
 
-    const playerSelection = "RoCk".toLowerCase(); //turned lowercase 
-    let computerSelection = getComputerChoice();
+    // const playerSelection = "RoCk".toLowerCase(); //turned lowercase 
     
     for (let i = 0; i < 5; i++) {
+        playerSelection = prompt("Pick your choice").toLowerCase();
+        //computer should select a choice every time the game runs
+        let computerSelection = getComputerChoice();
+        //call single game function inside loop 
         let roundResult = playRound(playerSelection, computerSelection);
         // if player wins then add 1 to player score
         if (roundResult === "You win!") {
@@ -36,10 +39,10 @@ function game() {
         } else if (roundResult === "You lose!") {
             computerCount += 1;
         } 
-    
-    
-    
+
+        //display win,loss or draw
         console.log(roundResult);
+        //display results of each round
         console.log(playerCount, computerCount);
     }
 
