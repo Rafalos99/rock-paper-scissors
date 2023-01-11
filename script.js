@@ -1,12 +1,12 @@
 
+
 function getComputerChoice() {
     let things = ['rock', 'paper', 'scissor']; //make these lowercase so its easier
     return choice = things[Math.floor(Math.random() * things.length)];
 }
 
-getComputerChoice(); //call function to test 'choice' console after using console.log
 
-//! Single round game function
+// Single round game function
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === "rock" && computerSelection === 'paper') {
         return "You lose!"
@@ -17,33 +17,34 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-//! Playing 5 rounds
+// Playing 5 rounds
 //Create game function
-function game(playerSelection, computerSelection) {
+function game() {
     // player and computer count should start at zero 
     let playerCount = 0;
     let computerCount = 0;
+
+    const playerSelection = "RoCk".toLowerCase(); //turned lowercase 
+    let computerSelection = getComputerChoice();
+    
     for (let i = 0; i < 5; i++) {
-        // call rules function made previously into for loop
-        playRound; 
+        let roundResult = playRound(playerSelection, computerSelection);
         // if player wins then add 1 to player score
-        if (playRound === "You win!") {
+        if (roundResult === "You win!") {
             playerCount += 1;
-            console.log(playerCount)
         // if computer wins then add 1 to computer score
-        } else if (playRound === "You lose!") {
+        } else if (roundResult === "You lose!") {
             computerCount += 1;
-            console.log(computerCount)
-        } else {
-            prompt("game over");
-        }
-            
+        } 
+    
+    
+    
+        console.log(roundResult);
+        console.log(playerCount, computerCount);
     }
+
 }
 
-const playerSelection = "RoCk".toLowerCase(); //turned lowercase 
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
-
+game();
 
 
