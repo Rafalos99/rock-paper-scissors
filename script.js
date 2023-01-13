@@ -7,14 +7,14 @@ function getComputerChoice() {
 
 
 //! This function plays a single round
-function playRound(playerSelection, computerSelection) {
+function playRound(playerSelectionLowerCase, computerSelection) {
     if
     //define the three win states
-        ((playerSelection === "rock" && computerSelection === 'scissors') //rock beats scissors
-        || (playerSelection === "paper" && computerSelection === "rock") //paper beats rock
-        || (playerSelection === "scissors" && computerSelection === "paper") //scissors beats paper
+        ((playerSelectionLowerCase === "rock" && computerSelection === 'scissors') //rock beats scissors
+        || (playerSelectionLowerCase === "paper" && computerSelection === "rock") //paper beats rock
+        || (playerSelectionLowerCase === "scissors" && computerSelection === "paper") //scissors beats paper
         ) { return "You win!"
-    } else if (playerSelection === computerSelection) {
+    } else if (playerSelectionLowerCase === computerSelection) {
         return "Draw"
       } else {
         return "You lose!"
@@ -31,13 +31,18 @@ function game(x) {
     // for loop to run x amount of rounds
     for (let i = 0; i < x; i++) {
         // prompt player choice every round
-        playerSelection = prompt("Pick your choice").toLowerCase();
+        playerSelection = prompt("Pick your choice");
+        if (playerSelection === null || playerSelection === '' ||) {
+            return;
+        } else {
+            playerSelectionLowerCase = playerSelection.toLowerCase();
+        }
 
         // computer choice every round
         let computerSelection = getComputerChoice();
 
         // call single game function inside loop 
-        let roundResult = playRound(playerSelection, computerSelection);
+        let roundResult = playRound(playerSelectionLowerCase, computerSelection);
 
         // if player wins then add 1 to player score
         if (roundResult === "You win!") {
@@ -54,6 +59,7 @@ function game(x) {
         console.log(playerCount, computerCount);
     }
 }
+
 
 game(5);
 
