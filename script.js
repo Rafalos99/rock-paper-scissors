@@ -1,9 +1,15 @@
-const buttons = document.querySelectorAll('button');
-const resultsDiv = document.querySelector("#results");
+const buttons = document.querySelectorAll('.btn');
+const resultsDiv = document.getElementById('results');
+const playerScoreSpan = document.getElementById("player-score");
+const computerScoreSpan = document.getElementById("computer-score");
+const container = document.querySelector(".results-container");
 
 
+let playerCount = 0; //initial player score
+let computerCount = 0; //initial computer score
+let drawCount = 0; //initial draw count
 
-//! Computer choice
+//! Get computer choice
 function getComputerChoice() {
     let things = ['rock', 'paper', 'scissors']; //make these lowercase so its easier
     return choice = things[Math.floor(Math.random() * things.length)];
@@ -25,46 +31,112 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-//! Using buttons to choose 'rock, paper or scissors'
-buttons.forEach(button => { //loop through buttons
-  button.addEventListener('click', () => {
-    const playerSelection = button.textContent.toLowerCase(); //takes the text content of the buttons as the player selection in lower case
-    const computerSelection = getComputerChoice(); //random computer selection
-    const roundResult = playRound(playerSelection, computerSelection); //call the playround function
-    console.log(roundResult); //check 'win, draw loss' outcome
+//! Loop through buttons and play a round
+function game() { 
+  buttons.forEach((button) => { //loop through buttons
+    button.addEventListener("click", () => {
+      const playerSelectionLowerCase = button.textContent.toLowerCase(); //take text content of the button into lower case as playerSelection
+      const computerSelection = getComputerChoice(); //get random computer choice
+      const roundResult = playRound(playerSelectionLowerCase, computerSelection); //gets the return values from the single round function
+
+      if (roundResult === "You win!") { //
+          playerCount += 1;
+          displayResults("Good job, you won a round!");
+      } else if (roundResult === "You lose!") {
+          computerCount += 1;
+          displayResults("Oh no they got one on us!");
+
+      } else if (roundResult === "Draw") {
+          drawCount += 1;
+          displayResults("Tie round!");
+      }
+
+      playerScoreSpan.textContent = playerCount; // add to player count ui
+      computerScoreSpan.textContent = computerCount; // add to computer count ui
+
+      if (isGameOver()) { // check if the game is over
+            let resultText = "";
+            if (playerCount > computerCount) {
+            resultText = "You win the game!"; //result text to later add onto result div
+            } else if (playerCount < computerCount) {
+            resultText = "You lose the game!"; //result text to later add onto result div
+            } else {
+                resultText = "The game is a draw!"; //result text to later add onto result div
+            }
+            
+            const restartButton = document.createElement("button"); //create restart button
+            restartButton.id = "restartBtn"; //assign an ID to the button
+            restartButton.textContent = "Restart"; //restart button name
+
+            restartButton.addEventListener("click", () => {
+            playerCount = 0;
+            computerCount = 0;
+            drawCount = 0;
+            playerScoreSpan.textContent = 0;
+            computerScoreSpan.textContent = 0;
+            resultsDiv.textContent = "";
+            game(); // start the game again
+        });
+          
+        resultsDiv.textContent = resultText; //Add the result text to results div
+        resultsDiv.appendChild(restartButton);
+      }
+    });
   });
-});
-
-//! This function plays x number of rounds using the single round 'playRound' function
-//Create game function
-function game(x) {
-    // player and computer count should start at zero 
-    let playerCount = 0;
-    let computerCount = 0;
-
-    // for loop to run x amount of rounds
-    for (let i = 0; i < x; i++) {
-        if (playerSelection === null || playerSelection === '' ) {
-            return;
-        } 
-
-
-        // call single game function inside loop 
-        let roundResult = playRound(playerSelection, computerSelection);
-
-        // if player wins then add 1 to player score
-        if (roundResult === "You win!") {
-            playerCount += 1;
-
-        // if computer wins then add 1 to computer score
-        } else if (roundResult === "You lose!") {
-            computerCount += 1;
-        } 
-
-        //display results of each round
-        console.log(playerCount, computerCount);
-    }
 }
+
+function displayResults(str) {
+  container.animate([{ opacity: 0 }, { opacity: 1 }], {
+    duration: 300,
+    fill: "forwards",
+    iterations: 1,
+    delay: 0,
+    easing: "ease-out",
+  });
+  container.textContent = str;
+}
+
+function isGameOver() { //returns true if playerCOunt or computer COunt reaches 5
+    return playerCount === 5 || computerCount === 5
+}
+
+// function resetGame() {
+//   playerCount = 0;
+//   computerCount = 0;
+//   playerScoreSpan.textContent = 0;
+//   computerScoreSpan.textContent = 0;
+//   resultsDiv.textContent = "Let's play again!";
+// }
+
+//! Start Screen
+const startGameBtn = document.getElementById('start-game-btn');
+const gameStartScreen = document.querySelector('.game-start-screen');
+
+// // hide the game UI and show the start screen initially
+// document.getElementById('score').style.display = 'none';
+// document.querySelectorAll('.btn').forEach(btn => btn.style.display = 'none');
+// document.getElementById('results').style.display = 'none';
+// document.getElementById('endgameModal').style.display = 'none';
+
+// // add event listener to start game button
+// startGameBtn.addEventListener('click', () => {
+//   // hide the start screen and show the game UI
+//   gameStartScreen.style.display = 'none';
+//   document.getElementById('score').style.display = 'block';
+//   document.querySelectorAll('.btn').forEach(btn => btn.style.display = 'inline-block');
+//   document.getElementById('results').style.display = 'block';
+//   document.getElementById('endgameModal').style.display = 'block';
+// });
+
+
+//! Health Bars
+
+
+
+//! Play the game
+game(); 
+
+
 
 
 

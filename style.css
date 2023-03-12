@@ -1,0 +1,158 @@
+/*! Start Screen */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+}
+
+.game-start-screen {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 6rem;
+    font-family: 'Determination Mono', monospace;
+    color: #FFFFFF;
+    text-shadow: 2px 2px #000000;
+    margin-bottom: 50px;
+}
+
+#start-game-btn {
+    font-size: 2rem;
+    font-family: 'Determination Mono', monospace;
+    background-color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 2px 2px #000000;
+    cursor: pointer;
+    color: #000000;
+    transition: all 0.2s ease-in-out;
+}
+
+#start-game-btn:hover {
+    background-color: #C0C0C0;
+    transform: scale(1.1);
+}
+
+/*! Health Bars */
+
+/* ! BASIC UI */
+.player-computer-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.player {
+    font-size: 3rem;
+    color: white;
+}
+
+.computer {
+    font-size: 3rem;
+    color: white;
+}
+
+#score {
+    color: white;
+    font-size: 3rem;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    margin-top: 50px;
+    border: solid red;
+}
+
+#score #player-score,
+#score #computer-score {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    margin: 0 150px;
+    font-size: 2rem;
+    font-family: 'Determination Mono', monospace;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid red;
+}
+
+
+/*! Buttons */
+#button-container {
+    border: solid blue;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+
+
+}
+
+button {
+    margin: 0 10px;
+    /* Add 10px margin horizontally between the buttons */
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #008CBA;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 2px 2px #000000;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: #006B87;
+    transform: scale(1.05);
+}
+
+
+
+/*! win/loss/draw Results Container */
+.results-container {
+    text-align: center;
+    opacity: 0;
+    transition: all 1s ease;
+    color: white;
+    font-size: 2rem;
+    margin-top: 20px;
+}
+
+#results {
+    color: white;
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+/*! Modals */
+.modal {
+    position: fixed;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: var(--primary-dark);
+    text-align: center;
+    font-size: 23px;
+    user-select: none;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    color: white;
+}
+

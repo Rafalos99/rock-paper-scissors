@@ -1,19 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissors</title> 
-    <link rel="stylesheet" href="style.css">
-</head> 
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
 <body>
-    <button>Rock</button>
-    <button>Paper</button>
-    <button>Scissors</button>
+
+    <!-- New game start screen -->
+    <!-- <div class="game-start-screen">
+        <h1>Welcome to Rock Paper Scissors!</h1>
+        <button id="start-game-btn">START GAME</button>
+    </div> -->
+
+
+    <!-- Game UI -->
+    
+
+    <div id="score">
+        <p>You: <span id="player-score">0</span></p>
+        <p>Computer: <span id="computer-score">0</span></p>
+    </div>
+
+    <div id="button-container">
+        <button class="btn">Rock</button>
+        <button class="btn">Paper</button>
+        <button class="btn">Scissors</button>
+    </div>
+   
+
     <div id="results"></div>
+
+    <div class="modal" id="endgameModal">  <!--initally inactive. Becomes active after a player/computer wins-->
+        <p class="modal-title" id="endgameMsg"></p>
+        <button id="restartBtn">Play again</button>
+    </div>
+    
+    <div class="results-container"></div>
+
+    <script src="script.js"></script>
+
 </body>
 
-<script src="script.js"></script>
-
 </html>
+
